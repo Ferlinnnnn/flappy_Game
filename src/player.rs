@@ -24,7 +24,7 @@ impl Player {
         //         ctx.set_bg(0, self.y, (pixel[0], pixel[1], pixel[2]));
         //     }
         // }
-          ctx.set(0, self.y, YELLOW, BLACK, to_cp437('🤣'))
+          ctx.set(0, self.y, YELLOW, ORANGE, to_cp437('🤣'))
     }
     pub fn gravity_and_move(&mut self) {
         if self.velocity < 2.0 {

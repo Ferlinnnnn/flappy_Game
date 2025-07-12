@@ -13,11 +13,12 @@ pub struct Obstacle {
 impl Obstacle {
     pub fn new(x: i32, score: i32) -> Self {
         let mut random = RandomNumberGenerator::new();
-        Obstacle {
-            x,
-            gap_y: random.range(10, 40),   // 不包含40
-            size: i32::max(2, 20 - score), // score玩家的积分，积分越多洞越窄
-        }
+        let size = i32::max(5, 20 - score); // 洞口最小为5
+        let half_size = size / 2;
+        let min_gap_y = half_size + 2;
+        let max_gap_y = SCREEN_HEIGHT - half_size - 2;
+        let gap_y = random.range(min_gap_y, max_gap_y);
+        Obstacle { x, gap_y, size }
     }
     // 渲染障碍物
     pub fn render(&mut self, ctx: &mut BTerm, player_x: i32) {
